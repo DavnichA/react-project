@@ -1,4 +1,5 @@
 import React from 'react';
+import nav from './css/Nav.module.css';
 
 function Nav() {
     return (

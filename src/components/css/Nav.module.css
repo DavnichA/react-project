@@ -1,0 +1,28 @@
+nav {
+    grid-area: nav;
+    background-color:#67809f;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+}
+
+nav>div {
+    margin-top: 30px;
+}
+
+nav>div:nth-child(5) {
+    margin-top: 100%;
+}
+
+nav>div>a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.8em;
+}
+
+nav>div>a:hover {
+    color: plum;
+}

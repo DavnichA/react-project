@@ -1,0 +1,20 @@
+main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.head_img {
+    background-image: url(https://bgfons.com/upload/rainbow_texture679.jpg);
+    background-size: cover;
+    flex-grow: 0.3;
+}
+
+.client {
+    flex-grow: 1;
+}
+
+.posts {
+    flex-grow: 2;
+}
