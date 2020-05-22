@@ -6,15 +6,11 @@ main {
 }
 
 .head_img {
-    background-image: url(https://bgfons.com/upload/rainbow_texture679.jpg);
+    background-image: url(https://images5.alphacoders.com/958/958580.jpg);
     background-size: cover;
-    flex-grow: 0.3;
+    flex-grow: 0.8;
 }
 
 .client {
-    flex-grow: 1;
-}
-
-.posts {
-    flex-grow: 2;
+    flex-grow: 1.2;
 }
