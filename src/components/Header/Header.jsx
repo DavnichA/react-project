@@ -4,7 +4,7 @@ import header from './Header.module.css';
 function Header() {
     return (
         <header>
-            <img src="https://lh3.googleusercontent.com/proxy/84c5I7m27trwr8a00xgaRLwU56GFtxc8I_ySlvaRg2rpeFzGMMVMnhmsTCwE4H1FNDydVrQXn7y1aNNu_89UpnxaY3QfMNDrqUo-ccX3vqOv5qBswIhLmALNNtI" alt="logo" />
+            <img src="https://www.veeam.com/content/dam/veeam/global/veeam-graphics/veeam_logo_white-500.png.web.1280.1280.png?ck=1572622163865&ck=1572622163865" alt="logo" />
         </header>
     );
 }

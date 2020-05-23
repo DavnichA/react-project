@@ -1,5 +1,5 @@
 main {
-    grid-area: main;
+    height: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -8,9 +8,10 @@ main {
 .head_img {
     background-image: url(https://images5.alphacoders.com/958/958580.jpg);
     background-size: cover;
-    flex-grow: 0.8;
+    width: 100%;
+    height: 20%;
 }
 
 .client {
-    flex-grow: 1.2;
+   
 }

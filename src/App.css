@@ -6,8 +6,12 @@
     display: grid;
     grid-template-areas:
         "header header"
-        "nav main";
+        "nav main-content";
     grid-template-rows: 10% 1fr;
     grid-template-columns: 20% 1fr;
-    grid-gap: 2px;
+    grid-gap: 1px;
+}
+
+.wrap-content {
+    grid-area: main-content;
 }
