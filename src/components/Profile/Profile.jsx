@@ -1,16 +1,14 @@
 import React from 'react';
 import main from './Profile.module.css';
 import MyPost from './My_Post/MyPost';
+import ProfileInfo from './Profile_info/ProfileInfo';
 
-function Profile() {
+function Profile(props) {
+   
     return (
-        <main>
-            <div className={main.head_img}></div>
-            <div className={main.client}>
-                <div className={main.avatar}></div>
-                <div className={main.description}></div>
-            </div>
-            <MyPost />
+        <main>  
+            <ProfileInfo />
+            <MyPost postData={props.state.postData}/>
         </main>
     );
 }

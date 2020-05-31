@@ -1,10 +1,9 @@
 nav {
     grid-area: nav;
-    background-color:#67809f;
+    background-color:#1f1b24;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: start;
     align-items: center;
     font-family: 'DM Mono', monospace;
 }
@@ -13,8 +12,8 @@ nav>div {
     margin-top: 30px;
 }
 
-nav>div:nth-child(5) {
-    margin-top: 100%;
+nav>div:nth-child(6) {
+    margin-top: 60%;
 }
 
 nav>div>a {
@@ -22,7 +21,15 @@ nav>div>a {
     color: #fff;
     font-size: 1.8em;
 }
+.friend_block>h3 {
+    color: #fff;
+    font-size: 2em;
+}
 
 nav>div>a:hover {
-    color: plum;
+    color: #bb86fc;
 }
+nav>div>a.active {
+    color:#bb86fc;
+}
+/* color secondary material #03dac5 */

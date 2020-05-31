@@ -1,0 +1,17 @@
+.profile {
+    height: 45%;
+}
+
+.head_img {
+    background-image: url(https://images5.alphacoders.com/958/958580.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 50%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.client {
+    padding: 10px;
+}
+

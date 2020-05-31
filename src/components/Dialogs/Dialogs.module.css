@@ -1,0 +1,26 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    height: 90vh;
+    grid-gap: 10px;
+}
+
+.users_dialogs {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    background-color: #433e47;
+    height: 86vh;
+}
+
+.messages {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #433e47;
+    height: 86vh;
+    width: 53vw;
+}

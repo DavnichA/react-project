@@ -1,3 +1,7 @@
 .my_posts {
-    
+    padding: 10px;
+}
+
+.write_text {
+    display: block
 }

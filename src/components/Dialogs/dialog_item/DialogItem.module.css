@@ -1,0 +1,18 @@
+
+
+.dialog {
+    margin-top: 2vh;
+}
+
+.dialog a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.dialog>a>img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    vertical-align: -100%;
+    margin-right: 1em;
+}

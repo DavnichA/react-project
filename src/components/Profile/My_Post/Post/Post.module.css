@@ -1,5 +1,8 @@
-.item>img {
+.img {
+    background-image: url(https://i.pinimg.com/originals/19/43/18/19431859261e12c5ba63da8f57b776ee.jpg);
+    background-size:cover;
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    display: inline-block;
 }
