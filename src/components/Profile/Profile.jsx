@@ -8,7 +8,9 @@ function Profile(props) {
     return (
         <main>  
             <ProfileInfo />
-            <MyPost postData={props.state.postData}/>
+            <MyPost postData={props.state.postData}
+             newPostText={props.state.newPostText}
+             dispatch={props.dispatch}/>
         </main>
     );
 }
