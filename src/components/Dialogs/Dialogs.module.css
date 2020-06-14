@@ -24,3 +24,29 @@
     height: 86vh;
     width: 53vw;
 }
+
+.inputMessage {
+    position: absolute;
+    bottom: 3vh;
+}
+.inputMessage textarea {
+    width: 45vw;
+    height: 20px;
+    border-radius: 10px;
+}
+.inputMessage textarea::placeholder {
+    margin-left: 40px;
+}
+
+.inputMessage button{
+    position: absolute;
+    width: 100px;
+    height: 27px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background-color: #03dac5;
+    border-color: #03dac5;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #fff;
+}
