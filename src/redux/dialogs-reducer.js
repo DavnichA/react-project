@@ -38,6 +38,7 @@ function dialogsReducer(state = initialState, action) {
   }
 }
 
+// disptch несет в себе тип и переданные данные для обновления состояния
 export const sendMessageActionCreator = () => {
   return {
     type: SEND_MESSAGE
@@ -51,3 +52,5 @@ export const updateNewMessageTextActionCreator = (text) => {
 }
 
 export default dialogsReducer;
+
+// reducers — это функции, для обработки отправленных действий.

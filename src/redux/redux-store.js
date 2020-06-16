@@ -2,7 +2,7 @@ import {createStore, combineReducers} from 'redux';
 import profileReducer from './profile-reducer';
 import dialogsReducer from './dialogs-reducer';
 
-// соеденить редюсеры и создание state с profilePage, dialogsPage по аналогии с store
+// описание  хранилища для разных разделов
 let reducers = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer

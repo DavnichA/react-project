@@ -19,7 +19,7 @@ let renderEntireTree = (state) => {
   );
 }
 
-// перерисовка
+// перерисовка всего приложения
 renderEntireTree(store.getState());
 
 //подписать данные входящие в store
