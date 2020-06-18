@@ -14,12 +14,8 @@ function App(props) {
         <Header />
         <Nav />
         <div className="wrap-content">
-          <Route path="/profile" render={() => <Profile
-            store={props.store} />}
-          />
-          <Route path="/dialogs" render={() => <DialogsContainer
-            store={props.store} />}
-          />
+          <Route path="/profile" render={() => <Profile />} />
+          <Route path="/dialogs" render={() => <DialogsContainer />} />
         </div>
       </div>
     </BrowserRouter>

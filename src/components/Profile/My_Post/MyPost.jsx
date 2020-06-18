@@ -6,7 +6,7 @@ function MyPost(props) {
 
     let postElement = props.postData.map((post) => {
         return (
-            <Post message={post.message} like={post.likescount} />
+            <Post message={post.message} like={post.likescount} key={post.id + Math.random()}/>
         )
     });
 

@@ -9,13 +9,13 @@ function Dialogs(props) {
 
     let dialogsElement = state.dialogsData.map((dialog) => {
         return (
-            <DialogItem name={dialog.name} img={dialog.img} id={dialog.id} />
+            <DialogItem name={dialog.name} img={dialog.img} id={dialog.id} key={dialog.id + Math.random()}/>
         )
     });
 
     let messagesElements = state.messagesData.map((message) => {
         return (
-            <Message message={message.message} />
+            <Message message={message.message} key={message.id + Math.random()}/>
         )
     });
     // send new message
@@ -39,8 +39,8 @@ function Dialogs(props) {
             <div className={dialogs.messages}>
                 {messagesElements}
                 <div className={dialogs.inputMessage}>
-                    <textarea 
-                        value={newMessage} 
+                    <textarea
+                        value={newMessage}
                         onChange={writeMessage}
                         placeholder='Write a message...'></textarea>
                     <button onClick={onSendMessageClick}>Send</button>

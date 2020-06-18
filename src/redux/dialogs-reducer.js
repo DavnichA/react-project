@@ -2,7 +2,7 @@ const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 // state по умолчанию
-let initialState =  {
+let initialState = {
   dialogsData: [
     { id: 1, name: "Oleg", img: "https://i.lb.ua/047/48/5d9efcc739d04.jpeg" },
     { id: 2, name: "Vova", img: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Pan_Tadeusz_-_Ksiega_6_2.JPG" },
@@ -20,18 +20,23 @@ let initialState =  {
 function dialogsReducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_NEW_MESSAGE_TEXT:
-      state.newMessageText = action.newMessage
-      return state;
+      return {
+        ...state, //копируем обьект state
+        newMessageText: action.newMessage
+      };
 
     case SEND_MESSAGE:
       let message = state.newMessageText;
       let newMessage = {
         id: 4,
         message: message
-      }
-      state.newMessageText = '';
-      state.messagesData.push(newMessage);
-      return state;
+      };
+
+      return {
+        ...state,
+        newMessageText: '',
+        messagesData: [...state.messagesData, newMessage]
+      };
 
     default:
       return state;
