@@ -1,0 +1,102 @@
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: #433e47;
+    color: #ffffff;
+    border-radius:10px;
+    height: 89.5vh;
+    width: 79.8vw;
+    overflow: auto;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -ms-border-radius:10px;
+    -o-border-radius:10px;
+}
+
+.headline {
+    color: #ECEFF1;
+    padding-left: 6%;
+}
+
+.user_wrapper{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.user_block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-bottom: 3vh;
+}
+.user_photo_wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.ava_img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.user_photo {
+    width:100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.ava_img>button {
+    margin-top: 5px;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.ava_img>button:focus {
+    outline: none;
+}
+
+.discription {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border: 2px solid #03dac5;
+    border-radius: 10px;
+    width: 70%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.name_status {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    padding-left: 20px;
+}
+
+.location {
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    width: 25%;
+}
+
+.btn_flw {
+    background-color: #bb86fc;
+}

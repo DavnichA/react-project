@@ -1,8 +1,9 @@
 .dialogs {
     display: grid;
     grid-template-columns: 30% 1fr;
-    height: 90vh;
     grid-gap: 10px;
+    height: 90vh;
+    width: 82.3vw;
 }
 
 .users_dialogs {
@@ -14,25 +15,24 @@
     justify-content: flex-start;
     border-radius: 10px;
     background-color: #433e47;
-    height: 86vh;
 }
 
 .messages {
     padding: 10px;
     border-radius: 10px;
-    background-color: #433e47;
-    height: 86vh;
+    background-color: #433e47; 
     width: 53vw;
 }
 
 .inputMessage {
     position: absolute;
-    bottom: 3vh;
+    bottom: 1vh;
 }
 .inputMessage textarea {
     width: 45vw;
     height: 20px;
     border-radius: 10px;
+    resize: none;
 }
 .inputMessage textarea::placeholder {
     margin-left: 40px;
@@ -49,4 +49,7 @@
     border-radius: 10px;
     font-size: 16px;
     color: #fff;
+}
+.inputMessage textarea, .inputMessage button {
+    outline: none;
 }
