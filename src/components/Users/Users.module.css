@@ -104,8 +104,9 @@ main {
 .page {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    padding-bottom: 1em;;
+    padding-bottom: 1em;
 }
 .page>span {
     cursor: pointer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import user from './Users.module.css';
 import userPhoto from '../../img/avatar.jpg';
+import { NavLink } from 'react-router-dom';
 
 let Users = (props) => {
 
@@ -16,7 +17,9 @@ let Users = (props) => {
             {props.users.map(u => <div className={user.user_block} key={u.id + Math.random()}>
                 <div className={user.ava_img}>
                     <div className={user.user_photo_wrapper}>
-                        <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar" className={user.user_photo} />
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar" className={user.user_photo} />
+                        </NavLink>
                     </div>
                     {u.followed
                         ? <button onClick={() => { props.unfollow(u.id) }} className={user.btn_flw}>Follow</button>
@@ -39,7 +42,7 @@ let Users = (props) => {
         {/* нумерация страниц */}
         <div className={user.page}>
             {pages.map(p => {
-                return <span className={props.currentPage === p && user.selectedPage}
+                return  <span className={props.currentPage === p ? user.selectedPage: null}
                     onClick={() => { props.onPageChanged(p) }} key={p + Math.random()}>{p}</span>
             })}
         </div>

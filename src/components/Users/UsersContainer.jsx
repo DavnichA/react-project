@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import { follow, unfollow, setUsers, currentPage, setTotalUsersCount, setIsFetching } from '../../redux/users-reducer';
+import { follow, unfollow, setUsers, setcurrentPage, setTotalUsersCount, setIsFetching } from '../../redux/users-reducer';
 import * as axios from 'axios';
 import Preloader from '../Preloader';
 
@@ -9,15 +9,16 @@ class UsersAPI extends React.Component {
     // монтируем данные с сервера
     componentDidMount() {
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setIsFetching(false);
-            this.props.setUsers(response.data.items) //данные которые вернулись с сервера: а именно пользователи
-            this.props.setTotalUsersCount(response.data.totalCount)
-        });
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setIsFetching(false);
+                this.props.setUsers(response.data.items) //данные которые вернулись с сервера: а именно пользователи
+                this.props.setTotalUsersCount(response.data.totalCount)
+            });
     }
     // по клику на цифры в списке нумерации страниц со значением страницы перелистываем
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
+        this.props.setcurrentPage(pageNumber);
         this.props.setIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
             this.props.setIsFetching(false);
@@ -75,7 +76,7 @@ let mapStateToProps = (state) => {
 }*/
 
 const UsersContainer = connect(mapStateToProps, {
-    follow, unfollow, setUsers, currentPage, setTotalUsersCount, setIsFetching
+    follow, unfollow, setUsers, setcurrentPage, setTotalUsersCount, setIsFetching
 })(UsersAPI);
 
 export default UsersContainer;
