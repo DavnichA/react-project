@@ -1,4 +1,8 @@
 header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     grid-area: header;
     background-color: #1f1b24;
 }
@@ -7,4 +11,16 @@ header>img {
     width: 280px;
     height: 70px;
     margin-left: 5px;
+}
+
+.login_block {
+    margin-right: 5vw;
+}
+
+.login_block>a {
+    color: #fff;
+    text-decoration: none;
+}
+.login_block>p {
+    color: #fff;
 }

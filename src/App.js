@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Nav from './components/Nav/Nav';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -12,7 +12,7 @@ function App(props) {
   return (
     <BrowserRouter>
       <div className="wrap">
-        <Header />
+        <HeaderContainer />
         <Nav />
         <div className="wrap-content">
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />

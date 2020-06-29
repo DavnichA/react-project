@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as axios from 'axios';
-import {setUserProfile} from '../../redux/profile-reducer';
+import { setUserProfile } from '../../redux/profile-reducer';
 import Profile from './Profile';
 import { withRouter } from 'react-router-dom';
 
@@ -20,18 +20,18 @@ class ProfileAPI extends React.Component {
 
     render() {
         return (
-            <Profile {... this.props} profile={this.props.profile}/>
+            <Profile {...this.props} profile={this.props.profile} />
         );
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-       profile: state.profilePage.profile
+        profile: state.profilePage.profile
     }
 }
 
 let WithUrlData = withRouter(ProfileAPI)
 
-const ProfileContainer = connect(mapStateToProps,{setUserProfile})(WithUrlData);
+const ProfileContainer = connect(mapStateToProps, { setUserProfile })(WithUrlData);
 export default ProfileContainer;

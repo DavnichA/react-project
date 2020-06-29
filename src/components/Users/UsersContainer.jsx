@@ -1,28 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import { follow, unfollow, setUsers, setcurrentPage, setTotalUsersCount, setIsFetching } from '../../redux/users-reducer';
-import * as axios from 'axios';
+import {
+    follow, unfollow, setUsers, setcurrentPage,
+    setTotalUsersCount, setIsFetching, toggleFollowing
+} from '../../redux/users-reducer';
 import Preloader from '../Preloader';
+import { usersAPI } from '../../API/api';
 
-class UsersAPI extends React.Component {
+class UsersAPIContainer extends React.Component {
     // монтируем данные с сервера
     componentDidMount() {
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.setIsFetching(false);
-                this.props.setUsers(response.data.items) //данные которые вернулись с сервера: а именно пользователи
-                this.props.setTotalUsersCount(response.data.totalCount)
-            });
+
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.setIsFetching(false);
+            this.props.setUsers(data.items) //данные которые вернулись с сервера: а именно пользователи
+            this.props.setTotalUsersCount(data.totalCount)
+        });
     }
     // по клику на цифры в списке нумерации страниц со значением страницы перелистываем
     onPageChanged = (pageNumber) => {
         this.props.setcurrentPage(pageNumber);
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+
+        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
             this.props.setIsFetching(false);
-            this.props.setUsers(response.data.items) //данные которые вернулись с сервера: а именно пользователи
+            this.props.setUsers(data.items) //данные которые вернулись с сервера: а именно пользователи
         });
     };
 
@@ -37,7 +41,9 @@ class UsersAPI extends React.Component {
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
                 currentPage={this.props.currentPage}
-                onPageChanged={this.onPageChanged} />
+                onPageChanged={this.onPageChanged}
+                toggleFollowing={this.props.toggleFollowing}
+                followingInProgress={this.props.followingInProgress} />
         </>
     }
 }
@@ -48,7 +54,8 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -76,7 +83,8 @@ let mapStateToProps = (state) => {
 }*/
 
 const UsersContainer = connect(mapStateToProps, {
-    follow, unfollow, setUsers, setcurrentPage, setTotalUsersCount, setIsFetching
-})(UsersAPI);
+    follow, unfollow, setUsers, setcurrentPage,
+    setTotalUsersCount, setIsFetching, toggleFollowing
+})(UsersAPIContainer);
 
 export default UsersContainer;
