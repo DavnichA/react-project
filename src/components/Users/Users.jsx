@@ -2,7 +2,6 @@ import React from 'react';
 import user from './Users.module.css';
 import userPhoto from '../../img/avatar.jpg';
 import { NavLink } from 'react-router-dom';
-import { usersAPI} from '../../API/api';
 
 let Users = (props) => {
 
@@ -23,25 +22,14 @@ let Users = (props) => {
                         </NavLink>
                     </div>
                     {u.followed
-                        ? <button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
-                            props.toggleFollowing(true, u.id);
-                            usersAPI.unfollowUsers(u.id).then(data => {
-                                if (data.resultCode === 0) {
-                                    props.unfollow(u.id);
-                                }
-                                props.toggleFollowing(false, u.id);
-                            });
-                        }} className={user.btn_flw}>Follow</button>
+                        ? <button disabled={props.followingInProgress.some(id => id === u.id)}
+                            onClick={() => { props.unfollowProgress(u.id) }}
+                            className={user.btn_flw}>
+                            Follow</button>
 
-                        : <button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
-                            props.toggleFollowing(true, u.id);
-                            usersAPI.followUsers(u.id).then(data => {
-                                if (data.resultCode === 0) {
-                                    props.follow(u.id);
-                                }
-                                props.toggleFollowing(false, u.id);
-                            });
-                        }}>Unfollow</button>}
+                        : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                            onClick={() => { props.followProgress(u.id) }}>
+                            Unfollow</button>}
                 </div>
                 <div className={user.discription}>
                     <div className={user.name_status}>

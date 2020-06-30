@@ -23,7 +23,7 @@ export const usersAPI = {
     },
 
     unfollowUsers(id) {
-        return instance.delete(`follow/${id}`, {})
+        return instance.delete(`follow/${id}`)
             .then(response => {
                 return response.data;
             });

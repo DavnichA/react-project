@@ -1,3 +1,5 @@
+import { usersAPI } from '../API/api';
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -8,24 +10,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 // state по умолчанию
 let initialState = {
-  users: [
-    /* {
-       id: 1, fullName: 'Oleg Lyashka', photo: 'https://i.lb.ua/047/48/5d9efcc739d04.jpeg',
-       followed: false, status: 'Skotunyaki', location: { city: 'Kiev', country: 'Ukraine' }
-     },
-     {
-       id: 2, fullName: 'Michał Elwiro Andriolli', photo: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Pan_Tadeusz_-_Ksiega_6_2.JPG',
-       followed: false, status: 'Painter', location: { city: 'Vilnius', country: 'Russian Empire' }
-     },
-     {
-       id: 3, fullName: 'Inna Lapteva', photo: 'https://i.sozcu.com.tr/wp-content/uploads/2017/12/inna-4.jpg',
-       followed: true, status: '... hop hey', location: { city: 'Odessa', country: 'Ukraine' }
-     },
-     {
-       id: 4, fullName: 'Sveta Kopchik', photo: 'https://yaustal.com/uploads/posts/2019-01/1546964062_sveta-biljalova-na-foto-iz-instagram-6.jpg',
-       followed: true, status: 'Singer', location: { city: 'Babruysk', country: 'Belarus' }
-     }*/
-  ],
+  users: [],
   pageSize: 10, // количество пользователей на одной странице
   totalUsersCount: 0,
   currentPage: 1,
@@ -85,8 +70,8 @@ function usersReducer(state = initialState, action) {
       return {
         ...state,
         followingInProgress: action.isFetching
-        ? [...state.followingInProgress, action.userId]
-        : state.followingInProgress.filter(id => id !== action.userId)
+          ? [...state.followingInProgress, action.userId]
+          : state.followingInProgress.filter(id => id !== action.userId)
         // для дисактивации одной кнопки подписки при запросе, а не всех
       }
 
@@ -95,14 +80,67 @@ function usersReducer(state = initialState, action) {
   }
 }
 
+// action creators
+
 export const follow = (userId) => ({ type: FOLLOW, userId });
 export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsers = (users) => ({ type: SET_USERS, users });
-export const setcurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount });
 export const setIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const toggleFollowing = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
+//thunk 
+
+export const getUsers = (currentPage, pageSize) => {
+
+  return (dispatch) => {
+    dispatch(setIsFetching(true)); //preloader on
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(setIsFetching(false)); ////preloader off
+      dispatch(setUsers(data.items)); //данные которые вернулись с сервера: а именно пользователи
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  }
+}
+
+export const pageChanged = (pageNumber, pageSize) => {
+
+  return (dispatch) => {
+    dispatch(setCurrentPage(pageNumber));
+    dispatch(setIsFetching(true));
+    usersAPI.getUsers(pageNumber, pageSize).then(data => {
+      dispatch(setIsFetching(false));
+      dispatch(setUsers(data.items));//данные которые вернулись с сервера: а именно пользователи
+    });
+  }
+}
+
+export const followProgress = (userId) => {
+
+  return (dispatch) => {
+    dispatch(toggleFollowing(true, userId));
+    usersAPI.followUsers(userId).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(follow(userId));
+      }
+      dispatch(toggleFollowing(false, userId));
+    });
+  }
+}
+
+export const unfollowProgress = (userId) => {
+
+  return (dispatch) => {
+    dispatch(toggleFollowing(true, userId));
+    usersAPI.unfollowUsers(userId).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(unfollow(userId));
+      }
+      dispatch(toggleFollowing(false, userId));
+    });
+  }
+}
 
 export default usersReducer;
 
