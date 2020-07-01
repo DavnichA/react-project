@@ -1,6 +1,7 @@
 import React from 'react';
 import p from './ProfileInfo.module.css';
 import Preloader from '../../Preloader';
+import userPhoto from '../../../img/avatar.jpg'
 
 
 function ProfileInfo(props) {
@@ -12,7 +13,7 @@ function ProfileInfo(props) {
             <div className={p.head_img}></div>
             <div className={p.client}>
                 <div className={p.avatar}>
-                    <img src={props.profile.photos.large} alt="im" />
+                    <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} alt="im" />
                 </div>
                 <div className={p.description}>
                     <div className={p.profileFullName}>

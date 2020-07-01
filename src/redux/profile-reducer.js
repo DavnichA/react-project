@@ -1,3 +1,5 @@
+import { usersAPI } from "../API/api";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -42,8 +44,18 @@ function profileReducer(state = initialState, action) {
   }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+//action
+export const addPostActionCreator = () => ({ type: ADD_POST });
+export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text });
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+
+// thunk
+export const getUsersProfile = (userId) => {
+  return (dispatch) => {
+    usersAPI.getProfile(userId).then(response => {
+      dispatch(setUserProfile(response.data)) //данные которые вернулись с сервера: а именно пользователи
+    });
+  }
+}
 
 export default profileReducer;
