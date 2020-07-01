@@ -1,6 +1,7 @@
 import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
+import { authRedirect } from '../../hoc/AuthRedirect';
 
 // before react-redux
 // function DialogsContainer(props) {
@@ -40,7 +41,10 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+//hoc
+let RedirectComponent = authRedirect(Dialogs);
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(RedirectComponent);
 
 // connect с локальным subscribe перерисовывает только эту часть программы
 // при изминении 
