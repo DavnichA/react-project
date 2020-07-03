@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { getUsersProfile } from '../../redux/profile-reducer';
 import Profile from './Profile';
 import { withRouter } from 'react-router-dom';
-import { authRedirect } from '../../hoc/AuthRedirect';
+//import { authRedirect } from '../../hoc/AuthRedirect';
+import { compose } from 'redux';
 
 
 class ProfileAPI extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 2;
+            userId =  8895;
         }
         this.props.getUsersProfile(userId);
     }
@@ -23,18 +24,27 @@ class ProfileAPI extends React.Component {
     }
 }
 
-//hoc
-let RedirectComponent = authRedirect(ProfileAPI);
-
-
-
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile
     }
 }
 
+//hoc
+
+
+
+
+//before compose
+/*let RedirectComponent = authRedirect(ProfileAPI);
+
 let WithUrlData = withRouter(RedirectComponent)
 
 const ProfileContainer = connect(mapStateToProps, { getUsersProfile })(WithUrlData);
-export default ProfileContainer;
+*/
+
+export default compose(
+    connect(mapStateToProps, { getUsersProfile }),
+    withRouter
+    //authRedirect
+)(ProfileAPI);

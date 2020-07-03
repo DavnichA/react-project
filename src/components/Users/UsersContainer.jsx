@@ -6,6 +6,8 @@ import {
     followProgress, unfollowProgress
 } from '../../redux/users-reducer';
 import Preloader from '../Preloader';
+import { compose } from 'redux';
+import { authRedirect } from '../../hoc/AuthRedirect';
 
 class UsersAPIContainer extends React.Component {
     // монтируем данные с сервера
@@ -64,6 +66,10 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
+//const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
 
-export default UsersContainer;
+
+export default compose(
+    authRedirect,
+    connect(mapStateToProps, mapDispatchToProps)
+)(UsersAPIContainer);
