@@ -4,8 +4,11 @@ import ProfileInfo from './Profile_info/ProfileInfo';
 
 function Profile(props) {
     return (
-        <main>  
-            <ProfileInfo profile={props.profile}/>
+        <main>
+            <ProfileInfo
+                profile={props.profile}
+                status={props.status}
+                updateStatus={props.updateStatus} />
             <MyPostContainer />
         </main>
     );

@@ -10,16 +10,33 @@ class ProfileStatus extends React.Component {
     }
     // обьявить через стрелочную либо в onclick .bind(this) и стандартно обьявлять
     activateEditMode = () => {
-
+        
         this.setState({
-            editMode: true
-        })
+            editMode: true,
+            status: this.props.status
+        });
     }
     deactivateEditMode = () => {
         
         this.setState({
             editMode: false
-        })
+        });
+        this.props.updateStatus(this.state.status)
+    }
+
+    onStatusChange = (st) => {
+        this.setState({
+            status: st.currentTarget.value 
+        });
+    }
+
+// сравнить старые значения с новыми и перерисовать
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {
@@ -27,10 +44,10 @@ class ProfileStatus extends React.Component {
             <div className={p.aboutMe}>
                 {!this.state.editMode
                     ? <div>
-                        <p onClick={this.activateEditMode}>{this.props.aboutMe}</p>
+                        <p onClick={this.activateEditMode}>{this.props.status}</p>
                     </div>
                     : <div>
-                        <input autoFocus={true} onBlur={this.deactivateEditMode} type="text" defaultValue={this.props.aboutMe} />
+                        <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode} type="text" value={this.state.status} />
                     </div>
                 }
             </div>

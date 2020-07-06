@@ -20,7 +20,9 @@ function ProfileInfo(props) {
                     <div className={p.profileFullName}>
                         <h3>{props.profile.fullName}</h3>
                     </div>
-                    <ProfileStatus aboutMe = {props.profile.aboutMe}/>
+                    <ProfileStatus 
+                        status = {props.status}
+                        updateStatus = {props.updateStatus}/>
                    
                     <div className={p.social}></div>
                 </div>
