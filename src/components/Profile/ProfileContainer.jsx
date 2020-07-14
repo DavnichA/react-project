@@ -37,9 +37,6 @@ let mapStateToProps = (state) => {
 
 //hoc
 
-
-
-
 //before compose
 /*let RedirectComponent = authRedirect(ProfileAPI);
 

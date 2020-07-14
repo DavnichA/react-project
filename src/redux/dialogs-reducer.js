@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 // state по умолчанию
@@ -13,29 +12,17 @@ let initialState = {
     { id: 1, message: "Hi" },
     { id: 2, message: "Nice" },
     { id: 3, message: "What nice" },
-  ],
-  newMessageText: ''
+  ]
 };
 
 function dialogsReducer(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_TEXT:
-      return {
-        ...state, //копируем обьект state 
-        newMessageText: action.newMessage
-      };
 
     case SEND_MESSAGE:
-      let message = state.newMessageText;
-      let newMessage = {
-        id: 4,
-        message: message
-      };
-
+      let message = action.newMessage;
       return {
         ...state,
-        newMessageText: '',
-        messagesData: [...state.messagesData, newMessage]
+        messagesData: [...state.messagesData, {id: 4, message: message}]
       };
 
     default:
@@ -44,15 +31,10 @@ function dialogsReducer(state = initialState, action) {
 }
 
 // disptch несет в себе тип и переданные данные для обновления состояния
-export const sendMessageActionCreator = () => {
+export const sendMessageActionCreator = (newMessage) => {
   return {
-    type: SEND_MESSAGE
-  }
-}
-export const updateNewMessageTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newMessage: text
+    type: SEND_MESSAGE,
+    newMessage
   }
 }
 
