@@ -27,6 +27,7 @@
 .inputMessage {
     position: absolute;
     bottom: 1vh;
+    display: flex;
 }
 .inputMessage textarea {
     width: 45vw;
@@ -39,7 +40,6 @@
 }
 
 .inputMessage button{
-    position: absolute;
     width: 100px;
     height: 27px;
     margin-left: 10px;
@@ -52,4 +52,10 @@
 }
 .inputMessage textarea, .inputMessage button {
     outline: none;
+}
+
+.inputMessage span {
+    position: absolute;
+    bottom: 5vh;
+    left: 0;
 }

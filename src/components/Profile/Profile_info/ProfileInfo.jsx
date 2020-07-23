@@ -11,7 +11,6 @@ function ProfileInfo(props) {
     }
     return (
         <div className={p.profile}>
-            <div className={p.head_img}></div>
             <div className={p.client}>
                 <div className={p.avatar}>
                     <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} alt="im" />

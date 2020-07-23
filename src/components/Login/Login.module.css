@@ -131,3 +131,8 @@ form {
     background-color: #03dac5
 }
 
+.form_error {
+  position: absolute;
+  color: red;
+  padding-top: 10px;;
+}

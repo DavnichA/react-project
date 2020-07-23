@@ -16,11 +16,27 @@ header>img {
 .login_block {
     margin-right: 5vw;
 }
-
 .login_block>a {
     color: #fff;
     text-decoration: none;
 }
-.login_block>p {
+.login_block>a:hover {
+    color: #03dac5;
+}
+.sign {
+    display: flex;
+    align-items: center;
+}
+
+.sign>p, .sign>span {
     color: #fff;
+}
+
+.sign>span {
+    margin-right: 1vw;
+    cursor: pointer;
+}
+
+.sign>span:hover {
+    color: #03dac5;
 }
