@@ -2,7 +2,8 @@ import React from 'react';
 import p from './ProfileInfo.module.css';
 import Preloader from '../../Preloader';
 import userPhoto from '../../../img/avatar.jpg'
-import ProfileStatus from './ProfileStatus';
+//import ProfileStatus from './ProfileStatus';
+import ProfileStatusHook from './ProfileStatusHook';
 
 
 function ProfileInfo(props) {
@@ -19,7 +20,8 @@ function ProfileInfo(props) {
                     <div className={p.profileFullName}>
                         <h3>{props.profile.fullName}</h3>
                     </div>
-                    <ProfileStatus 
+                    
+                    <ProfileStatusHook
                         status = {props.status}
                         updateStatus = {props.updateStatus}/>
                    

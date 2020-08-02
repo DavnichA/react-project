@@ -8,6 +8,8 @@ import {
 import Preloader from '../Preloader';
 import { compose } from 'redux';
 import { authRedirect } from '../../hoc/AuthRedirect';
+import { getUsersSelect, getPageSizeSelect, getTotalUsersCountSelect,
+         getCurrentPageSelect, getFollowingInProgressSelect, getIsFetchingSelect } from '../../redux/selectors/users-selectors';
 
 class UsersAPIContainer extends React.Component {
     // монтируем данные с сервера
@@ -36,15 +38,27 @@ class UsersAPIContainer extends React.Component {
         </>
     }
 }
+    /* before selectors */
+// let mapStateToProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress
+//     }
+// }
 
+   /* after selectors */
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsersSelect(state),
+        pageSize: getPageSizeSelect(state),
+        totalUsersCount: getTotalUsersCountSelect(state),
+        currentPage: getCurrentPageSelect(state),
+        isFetching: getIsFetchingSelect(state),
+        followingInProgress: getFollowingInProgressSelect(state)
     }
 }
 

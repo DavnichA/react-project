@@ -6,7 +6,7 @@ import p from './ProfileInfo.module.css';
 class ProfileStatus extends React.Component {
     //локальный стейт для замены между p статуса и input
     state = {
-        editMode: false
+        editMode: false,
     }
     // обьявить через стрелочную либо в onclick .bind(this) и стандартно обьявлять
     activateEditMode = () => {
