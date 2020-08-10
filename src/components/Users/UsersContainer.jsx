@@ -14,12 +14,14 @@ import { getUsersSelect, getPageSizeSelect, getTotalUsersCountSelect,
 class UsersAPIContainer extends React.Component {
     // монтируем данные с сервера
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        let {currentPage, pageSize} = this.props;
+        this.props.getUsers(currentPage, pageSize);
     }
 
     // по клику на цифры в списке нумерации страниц со значением страницы перелистываем
     onPageChanged = (pageNumber) => {
-        this.props.pageChanged(pageNumber, this.props.pageSize);
+        let {pageSize} = this.props;
+        this.props.pageChanged(pageNumber, pageSize);
     };
 
     render() {

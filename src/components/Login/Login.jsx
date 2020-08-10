@@ -5,25 +5,13 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { login } from '../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
+import { inputField } from '../FormsControls';
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div className={lg.inpt_wrap}>
-                <div className={lg.inptgroup}>
-                    <Field type={"text"} component={'input'} name={'email'} required={'required'} />
-                    <label>Email</label>
-                    <div className={lg.bar}></div>
-                </div>
-            </div>
-
-            <div className={lg.inpt_wrap}>
-                <div className={lg.inptgroup}>
-                    <Field type={"password"} component={'input'} name={'password'} required={'required'} />
-                    <label>Password</label>
-                    <div className={lg.bar}></div>
-                </div>
-            </div>
+                {inputField('Email', 'email', 'text', lg)}
+                {inputField('Password', 'password', 'password', lg)}
 
             <div className={`${chk.checkbox} ${chk.coloured}`}>
                 <label>

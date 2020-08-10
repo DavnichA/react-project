@@ -51,31 +51,22 @@ export const setStatus = (status) => ({ type: SET_STATUS, status });
 
 // thunk
 //получить пользователя
-export const getUsersProfile = (userId) => {
-  return (dispatch) => {
-    profileAPI.getProfile(userId).then(response => {
-      dispatch(setUserProfile(response.data)) //данные которые вернулись с сервера: а именно пользователи
-    });
-  }
+export const getUsersProfile = (userId) => async (dispatch) => {
+  let response = await profileAPI.getProfile(userId);
+  dispatch(setUserProfile(response.data)) //данные которые вернулись с сервера: а именно пользователи
 }
 
 //получить статус
-export const getStatus = (userId) => {
-  return (dispatch) => {
-    profileAPI.getStatus(userId).then(response => {
-      dispatch(setStatus(response.data))
-    });
-  }
+export const getStatus = (userId) => async (dispatch) => {
+  let response = await profileAPI.getStatus(userId);
+  dispatch(setStatus(response.data))
 }
 
 //обновить статус
-export const updateStatus = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status).then(response => {
-      if (response.data.resultCode === 0) {
-        dispatch(setStatus(status))
-      }
-    });
+export const updateStatus = (status) => async (dispatch) => {
+  let response = await profileAPI.updateStatus(status);
+  if (response.data.resultCode === 0) {
+    dispatch(setStatus(status))
   }
 }
 

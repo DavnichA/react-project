@@ -6,7 +6,15 @@ import { required, maxLengthCreator } from '../../../utils/validators/validators
 import { Textarea } from '../../FormsControls';
 
 
-function MyPost(props) {
+/* shouldComponentUpdate позволяет не перерисовывать несколько раз
+    одно и тоже, но PureComponent делает это автоматически или React.memo для 
+    функционального подхода- экономия ресурсов */
+
+// shouldComponentUpdate(nextProps, nextState) {
+//     return nextProps !== this.props || nextState !== this.state;
+// }
+
+const MyPost = React.memo((props) => {
 
     let postElement = props.postData.map((post) => {
         return (
@@ -31,7 +39,8 @@ function MyPost(props) {
 
         </div>
     );
-}
+});
+
 
 let maxLength = maxLengthCreator(30);
 

@@ -1,4 +1,5 @@
 import { usersAPI } from '../API/api';
+import { objectInArray } from '../utils/validators/objects-helpers';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -23,23 +24,13 @@ function usersReducer(state = initialState, action) {
     case FOLLOW:
       return {
         ...state,
-        users: state.users.map(u => {
-          if (u.id === action.userId) {
-            return { ...u, followed: true }
-          }
-          return u
-        })
+        users: objectInArray(state.users, action.userId, 'id', {followed: true})
       };
 
     case UNFOLLOW:
       return {
         ...state,
-        users: state.users.map(u => {
-          if (u.id === action.userId) {
-            return { ...u, followed: false }
-          }
-          return u
-        })
+        users: objectInArray(state.users, action.userId, 'id', {followed: false})
       };
 
     case SET_USERS:
@@ -91,55 +82,46 @@ export const setIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetc
 export const toggleFollowing = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
 //thunk 
+// получить пользователей
+export const getUsers = (currentPage, pageSize) => async (dispatch) => {
+  dispatch(setIsFetching(true)); //preloader on
 
-export const getUsers = (currentPage, pageSize) => {
-
-  return (dispatch) => {
-    dispatch(setIsFetching(true)); //preloader on
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
-      dispatch(setIsFetching(false)); ////preloader off
-      dispatch(setUsers(data.items)); //данные которые вернулись с сервера: а именно пользователи
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
-  }
+  let data = await usersAPI.getUsers(currentPage, pageSize);
+  dispatch(setIsFetching(false)); ////preloader off
+  dispatch(setUsers(data.items)); //данные которые вернулись с сервера: а именно пользователи
+  dispatch(setTotalUsersCount(data.totalCount));
 }
 
-export const pageChanged = (pageNumber, pageSize) => {
+// изминение страницы пользователей
+export const pageChanged = (pageNumber, pageSize) => async (dispatch) => {
+  dispatch(setCurrentPage(pageNumber));
+  dispatch(setIsFetching(true));
 
-  return (dispatch) => {
-    dispatch(setCurrentPage(pageNumber));
-    dispatch(setIsFetching(true));
-    usersAPI.getUsers(pageNumber, pageSize).then(data => {
-      dispatch(setIsFetching(false));
-      dispatch(setUsers(data.items));//данные которые вернулись с сервера: а именно пользователи
-    });
-  }
+  let data = await usersAPI.getUsers(pageNumber, pageSize);
+  dispatch(setIsFetching(false));
+  dispatch(setUsers(data.items));//данные которые вернулись с сервера: а именно пользователи
 }
 
-export const followProgress = (userId) => {
+//подписаться и отписаться 
 
-  return (dispatch) => {
-    dispatch(toggleFollowing(true, userId));
-    usersAPI.followUsers(userId).then(data => {
-      if (data.resultCode === 0) {
-        dispatch(follow(userId));
-      }
-      dispatch(toggleFollowing(false, userId));
-    });
+const followUnfollow = async (dispatch, userId, apiMethod, actionCreator) => {
+  dispatch(toggleFollowing(true, userId));
+
+  let data = await apiMethod(userId);
+  if (data.resultCode === 0) {
+    dispatch(actionCreator(userId));
   }
+  dispatch(toggleFollowing(false, userId));
 }
 
-export const unfollowProgress = (userId) => {
+export const followProgress = (userId) => async (dispatch) => {
+  let apiMethod = usersAPI.followUsers.bind(usersAPI);
+  followUnfollow(dispatch, userId, apiMethod, follow);
+}
 
-  return (dispatch) => {
-    dispatch(toggleFollowing(true, userId));
-    usersAPI.unfollowUsers(userId).then(data => {
-      if (data.resultCode === 0) {
-        dispatch(unfollow(userId));
-      }
-      dispatch(toggleFollowing(false, userId));
-    });
-  }
+export const unfollowProgress = (userId) => async (dispatch) => {
+  let apiMethod = usersAPI.unfollowUsers.bind(usersAPI);
+  followUnfollow(dispatch, userId, apiMethod, unfollow);
 }
 
 export default usersReducer;
