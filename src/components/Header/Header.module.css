@@ -5,6 +5,7 @@ header {
     align-items: center;
     grid-area: header;
     background-color: #1f1b24;
+    font-family: 'Montserrat', sans-serif;
 }
 
 header>img {

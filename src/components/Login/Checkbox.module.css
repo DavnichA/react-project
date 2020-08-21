@@ -11,7 +11,8 @@
 .checkbox label {
   cursor: pointer;
   padding-left: 0;
-  font-family: Roboto;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }
 
 .checkbox input[type="checkbox"] {

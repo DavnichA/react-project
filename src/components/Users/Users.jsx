@@ -4,7 +4,7 @@ import Paginator from './Paginator';
 import User from './User';
 
 let Users = (props) => {
-
+    
     return (
         <main>
             <h1 className={user.headline}>Users</h1>
@@ -19,7 +19,9 @@ let Users = (props) => {
 
             {/* нумерация страниц */}
             <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
-                       totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}/>
+                       totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}
+                       portionSize = {props.portionSize}/>
+                       
         </main>
     )
 }

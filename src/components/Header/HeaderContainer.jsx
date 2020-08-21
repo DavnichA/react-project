@@ -7,7 +7,9 @@ class HeaderContainer extends React.Component {
 
     render() {
         return (
-            <Header {...this.props} />
+            <Header  isAuth={this.props.isAuth}
+                     login={this.props.login}
+                     logout={this.props.logout}/>
         );
     }
 }

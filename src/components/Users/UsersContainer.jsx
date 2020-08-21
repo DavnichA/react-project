@@ -9,7 +9,8 @@ import Preloader from '../Preloader';
 import { compose } from 'redux';
 import { authRedirect } from '../../hoc/AuthRedirect';
 import { getUsersSelect, getPageSizeSelect, getTotalUsersCountSelect,
-         getCurrentPageSelect, getFollowingInProgressSelect, getIsFetchingSelect } from '../../redux/selectors/users-selectors';
+         getCurrentPageSelect, getFollowingInProgressSelect, getIsFetchingSelect,
+         getPortionSizeSelect } from '../../redux/selectors/users-selectors';
 
 class UsersAPIContainer extends React.Component {
     // монтируем данные с сервера
@@ -36,7 +37,8 @@ class UsersAPIContainer extends React.Component {
                 onPageChanged={this.onPageChanged}
                 followingInProgress={this.props.followingInProgress}
                 followProgress={this.props.followProgress}
-                unfollowProgress={this.props.unfollowProgress} />
+                unfollowProgress={this.props.unfollowProgress} 
+                portionSize={this.props.portionSize}/>
         </>
     }
 }
@@ -60,7 +62,8 @@ let mapStateToProps = (state) => {
         totalUsersCount: getTotalUsersCountSelect(state),
         currentPage: getCurrentPageSelect(state),
         isFetching: getIsFetchingSelect(state),
-        followingInProgress: getFollowingInProgressSelect(state)
+        followingInProgress: getFollowingInProgressSelect(state),
+        portionSize: getPortionSizeSelect(state)
     }
 }
 

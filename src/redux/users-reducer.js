@@ -1,13 +1,13 @@
 import { usersAPI } from '../API/api';
 import { objectInArray } from '../utils/validators/objects-helpers';
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
+const FOLLOW = 'my-app/users/FOLLOW';
+const UNFOLLOW = 'my-app/users/UNFOLLOW';
+const SET_USERS = 'my-app/users/SET_USERS';
+const SET_CURRENT_PAGE = 'my-app/users/SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'my-app/users/SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'my-app/users/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'my-app/users/TOGGLE_IS_FOLLOWING_PROGRESS';
 
 // state по умолчанию
 let initialState = {
@@ -16,7 +16,8 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false, // preloader
-  followingInProgress: []
+  followingInProgress: [],
+  portionSize: 10
 };
 
 function usersReducer(state = initialState, action) {

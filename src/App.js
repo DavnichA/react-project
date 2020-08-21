@@ -4,13 +4,16 @@ import { Route, withRouter } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import HeaderContainer from './components/Header/HeaderContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
+//import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/Login';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initialApp } from './redux/app-reducer';
 import Preloader from './components/Preloader';
+import { Suspense } from 'react';
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer')); //ленивая загрузка
 
 class App extends React.Component {
   componentDidMount() {
@@ -23,14 +26,17 @@ class App extends React.Component {
     else {
       return (
         <div className="wrap">
+
           <HeaderContainer />
           <Nav />
           <div className="wrap-content">
             <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-            <Route path="/dialogs" render={() => <DialogsContainer />} />
+            <Route path="/dialogs" render={() =>{
+              return <Suspense fallback={<div>Загрузка...</div>}> <DialogsContainer /> </Suspense> }}/>
             <Route path="/users" render={() => <UsersContainer />} />
             <Route path="/login" render={() => <Login />} />
           </div>
+          
         </div>
       );
     }

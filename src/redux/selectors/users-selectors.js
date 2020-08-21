@@ -18,6 +18,9 @@ export const getFollowingInProgressSelect = (state) => {
 export const getIsFetchingSelect = (state) => { 
     return state.usersPage.isFetching
 }
+export const getPortionSizeSelect = (state) => {
+    return state.usersPage.portionSize
+}
 
 //пример использования reselect (filter используеться как пример сложного селектора)
 

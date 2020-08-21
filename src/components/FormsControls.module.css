@@ -1,6 +1,7 @@
 .form_control.error input,
 .form_control.error textarea {
   border: 1px solid red;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .form_control.error span{

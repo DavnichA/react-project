@@ -1,4 +1,4 @@
-const SEND_MESSAGE = 'SEND-MESSAGE';
+const SEND_MESSAGE = 'my-app/dialogs/SEND-MESSAGE';
 
 // state по умолчанию
 let initialState = {

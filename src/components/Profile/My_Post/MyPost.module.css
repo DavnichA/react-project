@@ -1,7 +1,55 @@
-.my_posts {
+ .my_posts h3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 50%;
     padding: 10px;
 }
+.formPosts {
+    display: flex;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 10px;
+    margin-top: 5vh;
+}
 
-.write_text {
-    display: block
+.new_post {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1em;
+    margin-left: 10px;
+}
+
+.input_post {
+    width: 30vw;
+    height: 20px;
+    border-radius: 10px;
+    resize: none;
+    outline: none;
+}
+
+.btn_post {
+    width: 100px;
+    height: 27px;
+    margin-left: 10px;
+    background-color: #03dac5;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+}
+.btn_post:hover {
+    background-color: #00eed6;
+}
+
+.formPosts span {
+    position: absolute;
+    left: 0;
+    bottom: 5vh;
 }

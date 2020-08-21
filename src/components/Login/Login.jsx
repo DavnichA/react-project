@@ -1,27 +1,24 @@
 import React from 'react';
 import lg from './Login.module.css';
-import chk from './Checkbox.module.css';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { login } from '../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
-import { inputField } from '../FormsControls';
+import { inputField, chekboxForm } from '../FormsControls';
 
 const LoginForm = (props) => {
     return (
+        
         <form onSubmit={props.handleSubmit}>
-                {inputField('Email', 'email', 'text', lg)}
-                {inputField('Password', 'password', 'password', lg)}
 
-            <div className={`${chk.checkbox} ${chk.coloured}`}>
-                <label>
-                    <Field type={"checkbox"} component={'input'} name={'rememberMe'} />
-                    <span className={chk.checkbox_material}>
-                        <span className={chk.check}></span>
-                    </span> Remember me
-                </label>
-            </div>
+            {/* input text email & pass */}
+            {inputField('Email', 'email', 'text', lg)}
+            {inputField('Password', 'password', 'password', lg)}
+                
+            {/* ckeckbox */}
+            {chekboxForm('login_check', 'Remember Me')}
             
+            {/* errors alert */}
             {props.error && <div className={lg.form_error}>{props.error}</div>}
             
             <div className={lg.lg_btn_wrap}>

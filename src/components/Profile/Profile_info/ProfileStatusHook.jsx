@@ -33,7 +33,7 @@ let ProfileStatusHook = (props) => {
         <div className={p.aboutMe}>
             {!editMode
                 ? <div>
-                    <p onClick={activateEditMode}>{props.status}</p>
+                    <b>Status: </b> <span onClick={activateEditMode}>{props.status || '---'}</span>
                 </div>
                 : <div>
                     <input onChange={onStatusChange} autoFocus={true} 

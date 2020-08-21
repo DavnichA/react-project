@@ -5,7 +5,8 @@ nav {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
 
 nav>div {
