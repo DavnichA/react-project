@@ -1,8 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Тестовые Email и Password
 
-## Available Scripts
+Email: free@samuraijs.com
 
-In the project directory, you can run:
+Password: free
+
+
+
+
+
 
 ### `npm start`
 

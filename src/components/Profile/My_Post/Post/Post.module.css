@@ -6,3 +6,17 @@
     border-radius: 50%;
     display: inline-block;
 }
+
+.wrap_image_post {
+    display: flex;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.wrap_image_post span {
+    margin-left: 1em;
+}
+
+.likes {
+    margin-top: 5px;
+}
